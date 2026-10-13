@@ -1,0 +1,955 @@
+/* AdminLTE-inspired dashboard styling with 12 selectable themes. */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css");
+
+:root {
+  --card-bg: #ffffff;
+  --surface-2: #f8fafc;
+  --topbar-h: 56px; /* min; actual height uses padding */
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --sidebar-bg: #ffffff;
+  --page-bg: #f3f4f6;
+  --surface: #ffffff;
+  --surface-hover: #f3f4f6;
+  --sidebar-text: #374151;
+  --active-text: #ffffff;
+  --input-bg: #ffffff;
+  --shadow: 0 1px 2px rgba(0,0,0,.04);
+  /* Font roles – overridden by data-font-* on <html> */
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: var(--font-ui);
+  --font-nav: var(--font-ui);
+}
+
+body {
+  font-family: var(--font-ui);
+}
+
+h1, h2, h3, h4, h5, h6,
+.brand-text,
+.tab-pane-content h3 {
+  font-family: var(--font-heading);
+}
+
+.sidebar-nav,
+.sidebar-link,
+.nav-group {
+  font-family: var(--font-nav);
+}
+
+/* ---------- Light themes ---------- */
+html[data-theme="light-blue"] {
+  --border:#dbe4f0; --accent:#2563eb; --accent-hover:#1d4ed8;
+  --text:#172033; --text-muted:#64748b; --sidebar-bg:#ffffff; --page-bg:#f4f7fb;
+  --surface:#ffffff; --surface-hover:#eef4ff; --sidebar-text:#334155; --active-text:#fff;
+}
+html[data-theme="light-green"] {
+  --border:#dce8df; --accent:#16a34a; --accent-hover:#15803d;
+  --text:#17231b; --text-muted:#64746a; --sidebar-bg:#ffffff; --page-bg:#f3f8f4;
+  --surface:#ffffff; --surface-hover:#edf8f0; --sidebar-text:#34443a; --active-text:#fff;
+}
+html[data-theme="light-purple"] {
+  --border:#e4ddf0; --accent:#7c3aed; --accent-hover:#6d28d9;
+  --text:#241b35; --text-muted:#746b82; --sidebar-bg:#ffffff; --page-bg:#f7f5fa;
+  --surface:#ffffff; --surface-hover:#f1ebff; --sidebar-text:#4b4457; --active-text:#fff;
+}
+html[data-theme="light-orange"] {
+  --border:#f0dfd2; --accent:#ea580c; --accent-hover:#c2410c;
+  --text:#2b211b; --text-muted:#7c6b61; --sidebar-bg:#ffffff; --page-bg:#fbf6f2;
+  --surface:#ffffff; --surface-hover:#fff0e7; --sidebar-text:#51433b; --active-text:#fff;
+}
+html[data-theme="light-teal"] {
+  --border:#d5e8e8; --accent:#0f766e; --accent-hover:#115e59;
+  --text:#172526; --text-muted:#647678; --sidebar-bg:#ffffff; --page-bg:#f2f8f8;
+  --surface:#ffffff; --surface-hover:#e8f6f5; --sidebar-text:#354b4c; --active-text:#fff;
+}
+html[data-theme="light-rose"] {
+  --border:#f0dce3; --accent:#e11d48; --accent-hover:#be123c;
+  --text:#2c1b22; --text-muted:#7d6970; --sidebar-bg:#ffffff; --page-bg:#fcf5f7;
+  --surface:#ffffff; --surface-hover:#fff0f3; --sidebar-text:#514047; --active-text:#fff;
+}
+
+/* ---------- Dark themes ---------- */
+html[data-theme="dark-slate"] {
+  --border:#334155; --accent:#3b82f6; --accent-hover:#60a5fa;
+  --text:#f1f5f9; --text-muted:#94a3b8; --sidebar-bg:#0f172a; --page-bg:#020617;
+  --surface:#111827; --surface-hover:#1e293b; --sidebar-text:#cbd5e1; --active-text:#fff;
+  --input-bg:#111827; --shadow:0 1px 3px rgba(0,0,0,.3);
+}
+html[data-theme="dark-ocean"] {
+  --border:#164e63; --accent:#06b6d4; --accent-hover:#22d3ee;
+  --text:#ecfeff; --text-muted:#94a3b8; --sidebar-bg:#082f49; --page-bg:#041b2d;
+  --surface:#0b2940; --surface-hover:#123b55; --sidebar-text:#c5e8ef; --active-text:#06212d;
+  --input-bg:#0b2940; --shadow:0 1px 3px rgba(0,0,0,.35);
+}
+html[data-theme="dark-emerald"] {
+  --border:#14532d; --accent:#22c55e; --accent-hover:#4ade80;
+  --text:#ecfdf5; --text-muted:#9ca3af; --sidebar-bg:#052e16; --page-bg:#03170b;
+  --surface:#082316; --surface-hover:#0f3820; --sidebar-text:#c7ead2; --active-text:#03170b;
+  --input-bg:#082316; --shadow:0 1px 3px rgba(0,0,0,.35);
+}
+html[data-theme="dark-purple"] {
+  --border:#4c1d95; --accent:#a78bfa; --accent-hover:#c4b5fd;
+  --text:#f5f3ff; --text-muted:#a8a29e; --sidebar-bg:#1e1235; --page-bg:#0d0718;
+  --surface:#211538; --surface-hover:#30204d; --sidebar-text:#ddd6fe; --active-text:#1e1235;
+  --input-bg:#211538; --shadow:0 1px 3px rgba(0,0,0,.4);
+}
+html[data-theme="dark-amber"] {
+  --border:#78350f; --accent:#f59e0b; --accent-hover:#fbbf24;
+  --text:#fffbeb; --text-muted:#a8a29e; --sidebar-bg:#2a1604; --page-bg:#130a02;
+  --surface:#2b1806; --surface-hover:#43250a; --sidebar-text:#fde68a; --active-text:#211100;
+  --input-bg:#2b1806; --shadow:0 1px 3px rgba(0,0,0,.4);
+}
+html[data-theme="dark-rose"] {
+  --border:#881337; --accent:#fb7185; --accent-hover:#fda4af;
+  --text:#fff1f2; --text-muted:#a8a29e; --sidebar-bg:#2a0a18; --page-bg:#14040b;
+  --surface:#2c0d1c; --surface-hover:#46132a; --sidebar-text:#fecdd3; --active-text:#2a0a18;
+  --input-bg:#2c0d1c; --shadow:0 1px 3px rgba(0,0,0,.4);
+}
+
+html, body { height:100%; }
+
+body {
+  margin:0;
+  font-family: var(--font-ui);
+  background:var(--page-bg);
+  color:var(--text);
+  transition:background-color .2s ease,color .2s ease;
+}
+
+.app-shell {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--page-bg);
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  flex:0 0 auto;
+  min-height:var(--topbar-h);
+  height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:background-color .2s ease,border-color .2s ease;
+}
+
+.brand { display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.05rem; color:var(--text); flex: 0 1 auto; min-width: 0; }
+.brand .bi { color:var(--accent); font-size:1.3rem; }
+.brand-center { justify-content: center; flex: 1 1 auto; }
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+}
+.topbar-user {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+/* ---------- Theme picker ---------- */
+.theme-picker { position:relative; display: inline-flex; flex: 0 0 auto; }
+.theme-button {
+  display:inline-flex; align-items:center; gap:.5rem;
+  height:36px; padding:0 .75rem;
+  border:1px solid var(--border); border-radius:.5rem;
+  background:var(--surface); color:var(--text);
+  cursor:pointer; font:inherit; font-size:.88rem;
+  transition:background .15s ease,border-color .15s ease;
+  white-space: nowrap;
+}
+.theme-button:hover { background:var(--surface-hover); border-color:var(--accent); }
+.theme-button .theme-swatch {
+  width:13px; height:13px; border-radius:50%; background:var(--accent);
+  box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--accent);
+}
+.theme-menu {
+  position:absolute; z-index:1000; top:calc(100% + 8px); inset-inline-end:0;
+  width:260px; padding:.45rem;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:.65rem; box-shadow:0 10px 30px rgba(0,0,0,.15);
+  display:none;
+}
+.theme-menu.open { display:block; }
+.theme-section-title {
+  padding:.45rem .55rem .25rem; color:var(--text-muted);
+  font-size:.72rem; font-weight:700; text-transform:uppercase;
+}
+.theme-option {
+  width:100%; display:flex; align-items:center; gap:.65rem;
+  border:0; border-radius:.45rem; background:transparent;
+  color:var(--text); padding:.55rem; cursor:pointer;
+  font:inherit; text-align:start;
+}
+.theme-option:hover { background:var(--surface-hover); }
+.theme-option.active { background:var(--surface-hover); font-weight:600; }
+.theme-dot {
+  width:18px; height:18px; border-radius:50%; flex:0 0 auto;
+  border:1px solid var(--border);
+}
+.theme-meta { display:flex; flex-direction:column; gap:1px; }
+.theme-meta small { color:var(--text-muted); font-size:.7rem; }
+
+/* ---------- Sidebar + content ---------- */
+
+.sidebar-nav {
+  display:flex; flex-direction:column; gap:2px; padding:.5rem;
+  background:var(--sidebar-bg);
+}
+.sidebar-link {
+  display:flex; align-items:center; gap:.65rem;
+  padding:.55rem .7rem; border-radius:.45rem;
+  color:var(--sidebar-text); text-decoration:none; font-size:.92rem;
+  line-height:1.3; cursor:pointer; user-select:none;
+  transition:background-color .15s ease,color .15s ease;
+}
+.sidebar-link:hover { background:var(--surface-hover); color:var(--text); text-decoration:none; }
+.sidebar-link.active { background:var(--accent); color:var(--active-text); }
+.sidebar-link .nav-icon { width:18px; flex:0 0 auto; text-align:center; font-size:1rem; }
+.nav-group { display:flex; flex-direction:column; }
+.group-toggle .chevron { margin-inline-start:auto; font-size:.7rem; transition:transform .2s ease; }
+.group-toggle[aria-expanded="true"] .chevron { transform:rotate(180deg); }
+.sub-link { padding-inline-start:2.35rem; font-size:.88rem; }
+
+/* ---------- Main content ---------- */
+.tab-pane-content {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:.6rem; padding:1.6rem; width:100%; max-width:none;
+  box-shadow:var(--shadow);
+}
+.tab-pane-content h3 { margin:0 0 .75rem 0; font-weight:700; color:var(--text); }
+.tab-pane-content p { margin:0; color:var(--text-muted); line-height:1.9; }
+
+/* Authentication / RBAC */
+.login-page { min-height: 100vh; display:flex; align-items:center; justify-content:center; padding:2rem; background:var(--page-bg); }
+.login-card { width:min(460px, 94vw); padding:2rem; border:1px solid var(--border); border-radius:18px; background:var(--card-bg); box-shadow:0 20px 60px rgba(0,0,0,.12); }
+.login-icon { display:block; font-size:2.4rem; text-align:center; margin-bottom:.75rem; color:var(--accent); }
+.login-card h2 { text-align:center; margin-bottom:.25rem; }
+.login-subtitle, .login-hint { text-align:center; opacity:.7; }
+.login-card .form-label { margin-top:.7rem; }
+.login-card .btn { margin-top:1rem; }
+.login-error { margin-top:1rem; color:#dc2626; text-align:center; font-weight:600; }
+.role-badge, .username-badge { padding:.35rem .65rem; border-radius:999px; font-size:.78rem; margin-inline-end:.45rem; background:var(--surface-2); color:var(--text); }
+.logout-button { border:1px solid var(--border); background:transparent; color:var(--text); border-radius:8px; padding:.4rem .65rem; margin-inline-end:.75rem; }
+.logout-button:hover { background:var(--surface-2); }
+.user-form-card { max-width:620px; padding:1.25rem; border:1px solid var(--border); border-radius:14px; background:var(--card-bg); }
+.user-form-card .form-group { margin-bottom:.8rem; }
+.user-create-message { margin-top:1rem; font-weight:600; }
+.users-table { width:100%; border-collapse:collapse; background:var(--card-bg); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.users-table th, .users-table td { padding:.7rem .8rem; border-bottom:1px solid var(--border); text-align:start; }
+.users-table th { background:var(--surface-2); }
+
+/* Dark-mode surfaces used by authentication and user management. */
+[data-theme^="dark"] { --card-bg: #0f172a; --surface-2: rgba(255,255,255,.06); }
+
+/* User management action layout. */
+.user-action-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+
+/* Per-row actions in the users table */
+.user-actions-cell {
+  white-space: nowrap;
+  width: 1%;
+}
+.user-actions-cell .btn {
+  margin: 0 0.15rem;
+}
+.user-edit-modal-body .form-group,
+.user-edit-modal-body .shiny-input-container {
+  margin-bottom: 0.75rem;
+}
+
+
+/* Offline image CAPTCHA on the login form.
+   The PNG is drawn at 2x (460x152) and shown at 230x76 so it stays sharp. */
+.login-captcha-block { margin-top: 0.85rem; }
+.login-captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.login-captcha-image {
+  flex: 0 1 230px;
+  min-width: 0;
+  width: 230px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 230 / 76;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8fafc;      /* the image is always light; keep it readable in dark themes */
+  object-fit: contain;
+  user-select: none;
+}
+.login-captcha-refresh { white-space: nowrap; flex: 0 0 auto; min-height: 44px; }
+.login-captcha-block input.form-control {
+  font-size: 1.25rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.login-captcha-block input.form-control::placeholder {
+  font-size: .9rem; letter-spacing: normal; text-transform: none; font-weight: 400;
+}
+
+/* ---------- RTL support (activated when html[dir="rtl"]) ---------- */
+/* Bootstrap RTL CSS handles most component flipping. These rules
+   only adjust custom dashboard chrome that is not covered by BS. */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .theme-menu {
+  inset-inline-end: 0;
+  inset-inline-start: auto;
+}
+
+html[dir="rtl"] .group-toggle .chevron {
+  transform: scaleX(-1);
+}
+html[dir="rtl"] .group-toggle[aria-expanded="true"] .chevron {
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* Keep flex rows readable in RTL without forcing row-reverse on everything */
+html[dir="rtl"] .login-captcha-row,
+html[dir="rtl"] .user-action-row,
+html[dir="rtl"] .topbar {
+  direction: rtl;
+}
+
+/* ---------- Font role stacks (applied via data-font-ui etc. on html) ---------- */
+html[data-font-ui="vazirmatn"] { --font-ui: "Vazirmatn", system-ui, sans-serif; }
+html[data-font-ui="shabnam"] { --font-ui: "Shabnam", system-ui, sans-serif; }
+html[data-font-ui="samim"] { --font-ui: "Samim", system-ui, sans-serif; }
+html[data-font-ui="sahel"] { --font-ui: "Sahel", system-ui, sans-serif; }
+html[data-font-ui="byekan"] { --font-ui: "BYekan", system-ui, sans-serif; }
+html[data-font-ui="inter"] { --font-ui: "Inter", system-ui, sans-serif; }
+html[data-font-ui="roboto"] { --font-ui: "Roboto", system-ui, sans-serif; }
+html[data-font-ui="ibm-plex-sans"] { --font-ui: "IBM Plex Sans", system-ui, sans-serif; }
+html[data-font-ui="source-sans-3"] { --font-ui: "Source Sans 3", system-ui, sans-serif; }
+html[data-font-ui="system"] { --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+
+html[data-font-heading="vazirmatn"] { --font-heading: "Vazirmatn", system-ui, sans-serif; }
+html[data-font-heading="shabnam"] { --font-heading: "Shabnam", system-ui, sans-serif; }
+html[data-font-heading="samim"] { --font-heading: "Samim", system-ui, sans-serif; }
+html[data-font-heading="sahel"] { --font-heading: "Sahel", system-ui, sans-serif; }
+html[data-font-heading="byekan"] { --font-heading: "BYekan", system-ui, sans-serif; }
+html[data-font-heading="inter"] { --font-heading: "Inter", system-ui, sans-serif; }
+html[data-font-heading="roboto"] { --font-heading: "Roboto", system-ui, sans-serif; }
+html[data-font-heading="ibm-plex-sans"] { --font-heading: "IBM Plex Sans", system-ui, sans-serif; }
+html[data-font-heading="source-sans-3"] { --font-heading: "Source Sans 3", system-ui, sans-serif; }
+html[data-font-heading="system"] { --font-heading: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+html[data-font-heading="inherit"] { --font-heading: var(--font-ui); }
+
+html[data-font-nav="vazirmatn"] { --font-nav: "Vazirmatn", system-ui, sans-serif; }
+html[data-font-nav="shabnam"] { --font-nav: "Shabnam", system-ui, sans-serif; }
+html[data-font-nav="samim"] { --font-nav: "Samim", system-ui, sans-serif; }
+html[data-font-nav="sahel"] { --font-nav: "Sahel", system-ui, sans-serif; }
+html[data-font-nav="byekan"] { --font-nav: "BYekan", system-ui, sans-serif; }
+html[data-font-nav="inter"] { --font-nav: "Inter", system-ui, sans-serif; }
+html[data-font-nav="roboto"] { --font-nav: "Roboto", system-ui, sans-serif; }
+html[data-font-nav="ibm-plex-sans"] { --font-nav: "IBM Plex Sans", system-ui, sans-serif; }
+html[data-font-nav="source-sans-3"] { --font-nav: "Source Sans 3", system-ui, sans-serif; }
+html[data-font-nav="system"] { --font-nav: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+html[data-font-nav="inherit"] { --font-nav: var(--font-ui); }
+
+/* Font picker (mirrors theme picker chrome) */
+.font-picker { position: relative; display: inline-flex; flex: 0 0 auto; }
+.font-button {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  height: 36px; padding: 0 0.75rem;
+  border: 1px solid var(--border); border-radius: 0.5rem;
+  background: var(--surface); color: var(--text);
+  font: inherit; font-size: 0.88rem; cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+  white-space: nowrap;
+}
+.font-button:hover { background: var(--surface-hover); border-color: var(--accent); }
+.font-menu {
+  display: none; position: absolute; top: calc(100% + 6px);
+  inset-inline-end: 0; min-width: 260px; max-width: 320px;
+  padding: 0.75rem; border: 1px solid var(--border); border-radius: 0.65rem;
+  background: var(--surface); box-shadow: 0 10px 30px rgba(0,0,0,.15); z-index: 1000;
+}
+.font-menu.open { display: block; }
+.font-menu-title {
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--text-muted); margin-bottom: 0.6rem;
+}
+.font-role-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.75rem; margin-bottom: 0.55rem;
+}
+.font-role-row label {
+  font-size: 0.85rem; color: var(--text); margin: 0; white-space: nowrap;
+}
+.font-role-row select {
+  flex: 1; min-width: 0; max-width: 160px;
+  padding: 0.3rem 0.45rem; border: 1px solid var(--border);
+  border-radius: 0.4rem; background: var(--input-bg); color: var(--text);
+  font: inherit; font-size: 0.85rem;
+}
+
+/* =============================================================================
+   THEME BRIDGE -- makes Bootstrap / Shiny widgets follow the selected theme
+   =============================================================================
+   Shiny ships widgets with hard-coded light colours (white inputs, grey
+   buttons, blue sliders ...). Everything below maps them to the theme
+   variables (--surface, --text, --border, --accent ...) so ALL 12 themes work.
+
+   Covered: text/number/password/textarea inputs, select + selectize, checkbox,
+   radio, switch, slider (irs), date picker, file input, action / download /
+   task buttons (.action-label), cards, accordion, nav tabs/pills, tables,
+   modals, notifications, dropdowns, popovers, tooltips, list groups, progress
+   bars, code blocks, scrollbars and browser autofill.
+
+   Adding a widget that still looks wrong? Inspect its class in the browser and
+   add one rule to this section using the same variables. The list of required
+   selectors is guarded by tests/test_theme_coverage.py.
+   ========================================================================== */
+
+/* Extra shared variables, derived from each theme's own colours. */
+html {
+  color-scheme: light;
+  --input-border: var(--border);
+  --focus-ring: color-mix(in srgb, var(--accent) 32%, transparent);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --on-accent: var(--active-text);
+  scrollbar-color: color-mix(in srgb, var(--text-muted) 55%, transparent) transparent;
+}
+/* Tells the browser to draw native bits (scrollbars, spin buttons, native
+   <select> popups, date inputs, checkboxes) in dark mode. */
+html[data-theme^="dark"] { color-scheme: dark; }
+
+/* Map Bootstrap 5.3 variables to the active theme. */
+html[data-theme] {
+  --bs-body-bg: var(--page-bg);
+  --bs-body-color: var(--text);
+  --bs-emphasis-color: var(--text);
+  --bs-secondary-color: var(--text-muted);
+  --bs-tertiary-color: var(--text-muted);
+  --bs-secondary-bg: var(--surface-hover);
+  --bs-tertiary-bg: var(--surface-2);
+  --bs-border-color: var(--border);
+  --bs-border-color-translucent: var(--border);
+  --bs-link-hover-color: var(--accent-hover);
+  --bs-primary: var(--accent);
+  --bs-focus-ring-color: var(--focus-ring);
+}
+
+::selection { background: var(--accent); color: var(--on-accent); }
+input[type="checkbox"], input[type="radio"], input[type="range"], progress { accent-color: var(--accent); }
+html hr { border-color: var(--border); opacity: 1; }
+html code { color: var(--accent); }
+/* Content links only. (Never use .shiny-html-output here: the whole dashboard,
+   sidebar included, lives inside one, which recoloured the menu links.) */
+html .tab-pane-content a:not(.btn),
+html .modal-body a:not(.btn),
+html .card a:not(.btn) { color: var(--accent); }
+html .tab-pane-content a:not(.btn):hover,
+html .modal-body a:not(.btn):hover,
+html .card a:not(.btn):hover { color: var(--accent-hover); }
+
+/* ---------- Labels and helper text ---------- */
+html label,
+html .control-label,
+html .form-label,
+html .form-check-label,
+html .shiny-options-group label,
+html legend,
+html .action-label { color: inherit; }
+html .shiny-input-container > label,
+html .shiny-input-container > .control-label { color: var(--text); }
+html .form-text,
+html .help-block,
+html .text-muted,
+html .small.text-muted { color: var(--text-muted) !important; }
+
+/* ---------- Text-like inputs  (.shiny-input-text/-number/-password/-textarea) ---------- */
+html .form-control,
+html .form-select,
+html .shiny-input-text,
+html .shiny-input-number,
+html .shiny-input-password,
+html .shiny-input-textarea,
+html input.form-control,
+html textarea.form-control,
+html .input-group-text {
+  background-color: var(--input-bg);
+  color: var(--text);
+  border-color: var(--input-border);
+}
+html .input-group-text { background-color: var(--surface-2); }
+html .form-control:focus,
+html .form-select:focus,
+html .shiny-input-text:focus,
+html .shiny-input-number:focus,
+html .shiny-input-password:focus,
+html .shiny-input-textarea:focus {
+  background-color: var(--input-bg);
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem var(--focus-ring);
+}
+html .form-control::placeholder,
+html .selectize-input input::placeholder { color: var(--text-muted); opacity: .85; }
+html .form-control:disabled,
+html .form-control[readonly],
+html .form-select:disabled {
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  opacity: 1;
+}
+html select option,
+html select optgroup { background: var(--surface); color: var(--text); }
+/* Browser autofill paints inputs yellow/white; keep them on-theme. */
+html input:-webkit-autofill,
+html input:-webkit-autofill:hover,
+html input:-webkit-autofill:focus,
+html textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ---------- Checkbox, radio, switch ---------- */
+html .form-check-input {
+  background-color: var(--input-bg);
+  border-color: var(--text-muted);
+}
+html .form-check-input:checked,
+html .form-check-input[type="checkbox"]:indeterminate {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+html .form-check-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem var(--focus-ring);
+}
+html .form-check-input:disabled ~ .form-check-label,
+html .form-check-input:disabled + span { color: var(--text-muted); }
+
+/* ---------- Selectize (input_selectize / multiple select) ---------- */
+html .selectize-input,
+html .selectize-input.full,
+html .selectize-input.dropdown-active {
+  background: var(--input-bg);
+  color: var(--text);
+  border-color: var(--input-border);
+  box-shadow: none;
+}
+html .selectize-input.focus { border-color: var(--accent); box-shadow: 0 0 0 .2rem var(--focus-ring); }
+html .selectize-input > input,
+html .selectize-input .item { color: var(--text); }
+html .selectize-control.single .selectize-input:after { border-color: var(--text-muted) transparent transparent; }
+html .selectize-control.single .selectize-input.dropdown-active:after { border-color: transparent transparent var(--text-muted); }
+html .selectize-control.multi .selectize-input > div {
+  background: var(--accent); color: var(--on-accent); border: 0;
+}
+html .selectize-dropdown,
+html .selectize-dropdown.form-control {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+html .selectize-dropdown .option,
+html .selectize-dropdown .create,
+html .selectize-dropdown-content .option { color: var(--text); }
+html .selectize-dropdown .active,
+html .selectize-dropdown .active.create,
+html .selectize-dropdown [data-selectable]:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+html .selectize-dropdown .optgroup-header { background: var(--surface-2); color: var(--text-muted); }
+
+/* ---------- Sliders (ionRangeSlider, class .irs) ---------- */
+html .irs--shiny .irs-line,
+html .irs--shiny .irs-line-left,
+html .irs--shiny .irs-line-mid,
+html .irs--shiny .irs-line-right {
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+}
+html .irs--shiny .irs-bar {
+  background: var(--accent);
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+html .irs--shiny .irs-handle {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  box-shadow: 0 1px 4px rgba(0,0,0,.35);
+}
+html .irs--shiny .irs-handle.state_hover,
+html .irs--shiny .irs-handle:hover { background: var(--surface-hover); }
+html .irs--shiny .irs-min,
+html .irs--shiny .irs-max { background: var(--surface-2); color: var(--text-muted); }
+html .irs--shiny .irs-single,
+html .irs--shiny .irs-from,
+html .irs--shiny .irs-to { background: var(--accent); color: var(--on-accent); }
+html .irs--shiny .irs-single:before,
+html .irs--shiny .irs-from:before,
+html .irs--shiny .irs-to:before { border-top-color: var(--accent); }
+html .irs--shiny .irs-grid-text { color: var(--text-muted); }
+html .irs--shiny .irs-grid-pol { background: var(--border); }
+html .irs--shiny .irs-handle > i:first-child { background: transparent; }
+
+/* ---------- Date picker (bootstrap-datepicker) ---------- */
+html .datepicker,
+html .datepicker-dropdown {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+html .datepicker table tr td,
+html .datepicker table tr th { color: var(--text); }
+html .datepicker table tr td.old,
+html .datepicker table tr td.new,
+html .datepicker table tr td.disabled,
+html .datepicker table tr td.disabled:hover { color: var(--text-muted); background: transparent; }
+html .datepicker table tr td.day:hover,
+html .datepicker table tr td span:hover,
+html .datepicker table tr th.datepicker-switch:hover,
+html .datepicker table tr th.prev:hover,
+html .datepicker table tr th.next:hover,
+html .datepicker table tr th.clear:hover,
+html .datepicker table tr th.today:hover { background: var(--surface-hover); color: var(--text); }
+html .datepicker table tr td.today { background: var(--accent-soft); color: var(--text); }
+html .datepicker table tr td.active,
+html .datepicker table tr td.active:hover,
+html .datepicker table tr td.active.active,
+html .datepicker table tr td span.active,
+html .datepicker table tr td span.active:hover { background: var(--accent); color: var(--on-accent); }
+html .datepicker table tr td.range { background: var(--accent-soft); color: var(--text); }
+html .datepicker-dropdown:before { border-bottom-color: var(--border); border-top-color: var(--border); }
+html .datepicker-dropdown:after { border-bottom-color: var(--surface); border-top-color: var(--surface); }
+
+/* ---------- Buttons: .btn-default (Shiny's default), secondary, outline, primary ---------- */
+/* :where() keeps the specificity low, so btn-primary / btn-danger / ... (which
+   Shiny adds NEXT TO btn-default) keep their own colours. */
+html .btn-default:where(:not(.btn-primary, .btn-danger, .btn-success, .btn-warning, .btn-info, .btn-link)),
+html .btn-secondary,
+html .shiny-download-link:where(:not(.btn-primary, .btn-danger, .btn-success, .btn-warning, .btn-info)),
+html .btn-outline-secondary {
+  --bs-btn-color: var(--text);
+  --bs-btn-bg: var(--surface);
+  --bs-btn-border-color: var(--border);
+  --bs-btn-hover-color: var(--text);
+  --bs-btn-hover-bg: var(--surface-hover);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-active-color: var(--text);
+  --bs-btn-active-bg: var(--surface-hover);
+  --bs-btn-active-border-color: var(--accent);
+  --bs-btn-disabled-color: var(--text-muted);
+  --bs-btn-disabled-bg: var(--surface-2);
+  --bs-btn-disabled-border-color: var(--border);
+  --bs-btn-focus-shadow-rgb: 128, 128, 128;
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-border-color);
+}
+html .btn-default:where(:not(.btn-primary, .btn-danger, .btn-success, .btn-warning, .btn-info, .btn-link)):hover,
+html .btn-secondary:hover, html .btn-outline-secondary:hover,
+html .shiny-download-link:where(:not(.btn-primary, .btn-danger, .btn-success, .btn-warning, .btn-info)):hover {
+  background-color: var(--surface-hover); color: var(--text); border-color: var(--accent);
+}
+html .btn-primary,
+html .btn-outline-primary:hover,
+html .bslib-task-button.btn-primary {
+  --bs-btn-color: var(--on-accent);
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--on-accent);
+  --bs-btn-hover-bg: var(--accent-hover);
+  --bs-btn-hover-border-color: var(--accent-hover);
+  --bs-btn-active-color: var(--on-accent);
+  --bs-btn-active-bg: var(--accent-hover);
+  --bs-btn-active-border-color: var(--accent-hover);
+  --bs-btn-disabled-color: var(--on-accent);
+  --bs-btn-disabled-bg: var(--accent);
+  --bs-btn-disabled-border-color: var(--accent);
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-border-color);
+}
+html .btn-primary:hover { background-color: var(--accent-hover); border-color: var(--accent-hover); color: var(--on-accent); }
+html .btn-outline-primary {
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-bg: var(--accent);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+html .btn-link { color: var(--accent); }
+html .btn:focus-visible { box-shadow: 0 0 0 .2rem var(--focus-ring); }
+/* The text inside action buttons always follows the button's own colour. */
+html .action-label { color: inherit; }
+/* Our own pill buttons keep their custom look (declared earlier in this file). */
+html .logout-button { background: transparent; color: var(--text); border-color: var(--border); }
+html .logout-button:hover { background: var(--surface-2); color: var(--text); }
+
+/* ---------- File input and progress bars ---------- */
+html .input-group .btn-file,
+html .input-group > .btn { border-color: var(--border); }
+html .progress { --bs-progress-bg: var(--surface-hover); background-color: var(--surface-hover); }
+html .progress-bar { background-color: var(--accent); color: var(--on-accent); }
+
+/* ---------- Cards, accordion, nav tabs/pills ---------- */
+html .card,
+html .bslib-card {
+  --bs-card-bg: var(--surface);
+  --bs-card-border-color: var(--border);
+  --bs-card-cap-bg: var(--surface-2);
+  --bs-card-color: var(--text);
+  background-color: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+html .card-header, html .card-footer {
+  background-color: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+}
+html .accordion {
+  --bs-accordion-bg: var(--surface);
+  --bs-accordion-color: var(--text);
+  --bs-accordion-border-color: var(--border);
+  --bs-accordion-btn-color: var(--text);
+  --bs-accordion-btn-bg: var(--surface);
+  --bs-accordion-active-color: var(--text);
+  --bs-accordion-active-bg: var(--surface-hover);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 .2rem var(--focus-ring);
+}
+html .nav-tabs {
+  --bs-nav-tabs-border-color: var(--border);
+  --bs-nav-tabs-link-hover-border-color: var(--border) var(--border) var(--border);
+  --bs-nav-tabs-link-active-color: var(--text);
+  --bs-nav-tabs-link-active-bg: var(--surface);
+  --bs-nav-tabs-link-active-border-color: var(--border) var(--border) var(--surface);
+}
+html .nav-link { color: var(--accent); }
+html .nav-link:hover, html .nav-link:focus { color: var(--accent-hover); }
+html .nav-tabs .nav-link.active { color: var(--text); background-color: var(--surface); }
+html .nav-pills .nav-link.active,
+html .nav-pills .show > .nav-link { background-color: var(--accent); color: var(--on-accent); }
+html .tab-content { color: var(--text); }
+/* Accordion arrow: Bootstrap paints it blue/grey; colour it from the theme instead. */
+html .accordion-button::after,
+html .accordion-button:not(.collapsed)::after {
+  background-image: none;
+  background-color: var(--text-muted);
+  -webkit-mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / 1.1rem no-repeat;
+  mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") center / 1.1rem no-repeat;
+}
+html .accordion-button:not(.collapsed)::after { background-color: var(--accent); }
+html .bg-primary, html .text-bg-primary { background-color: var(--accent) !important; color: var(--on-accent) !important; }
+html .badge.bg-primary { color: var(--on-accent) !important; }
+
+/* ---------- Tables (render.table / data frames / plain .table) ---------- */
+html .table {
+  --bs-table-color: var(--text);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--border);
+  --bs-table-striped-bg: var(--surface-2);
+  --bs-table-striped-color: var(--text);
+  --bs-table-hover-bg: var(--surface-hover);
+  --bs-table-hover-color: var(--text);
+  color: var(--text);
+  border-color: var(--border);
+}
+html .shiny-data-grid table { color: var(--text); }
+html .shiny-data-grid > table > thead > tr > th {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+}
+html .shiny-data-grid > table > tbody > tr > td { border-color: var(--border); }
+
+/* ---------- Modals, notifications, dropdowns, popovers, tooltips, lists ---------- */
+html .modal-content {
+  --bs-modal-bg: var(--surface);
+  --bs-modal-color: var(--text);
+  --bs-modal-border-color: var(--border);
+  --bs-modal-header-border-color: var(--border);
+  --bs-modal-footer-border-color: var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+html .modal-header, html .modal-footer { border-color: var(--border); }
+html .modal-title { color: var(--text); }
+html[data-theme^="dark"] .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+html .shiny-notification {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  opacity: 1;
+}
+html .shiny-notification-message { border-inline-start-color: var(--accent); }
+html .shiny-notification-warning { border-inline-start-color: #f59e0b; }
+html .shiny-notification-error { border-inline-start-color: #dc2626; }
+html .shiny-notification-close { color: var(--text-muted); }
+html .shiny-notification-close:hover { color: var(--text); }
+html .dropdown-menu {
+  --bs-dropdown-bg: var(--surface);
+  --bs-dropdown-color: var(--text);
+  --bs-dropdown-border-color: var(--border);
+  --bs-dropdown-link-color: var(--text);
+  --bs-dropdown-link-hover-color: var(--text);
+  --bs-dropdown-link-hover-bg: var(--surface-hover);
+  --bs-dropdown-link-active-color: var(--on-accent);
+  --bs-dropdown-link-active-bg: var(--accent);
+  --bs-dropdown-divider-bg: var(--border);
+}
+html .popover {
+  --bs-popover-bg: var(--surface);
+  --bs-popover-border-color: var(--border);
+  --bs-popover-header-bg: var(--surface-2);
+  --bs-popover-header-color: var(--text);
+  --bs-popover-body-color: var(--text);
+}
+html .tooltip { --bs-tooltip-bg: var(--text); --bs-tooltip-color: var(--surface); }
+html .list-group {
+  --bs-list-group-bg: var(--surface);
+  --bs-list-group-color: var(--text);
+  --bs-list-group-border-color: var(--border);
+  --bs-list-group-action-color: var(--text);
+  --bs-list-group-action-hover-bg: var(--surface-hover);
+  --bs-list-group-action-hover-color: var(--text);
+  --bs-list-group-active-bg: var(--accent);
+  --bs-list-group-active-border-color: var(--accent);
+  --bs-list-group-active-color: var(--on-accent);
+}
+
+/* ---------- Text / code output ---------- */
+html pre,
+html pre.shiny-text-output,
+html .shiny-text-output pre {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: .45rem;
+}
+html .shiny-text-output { color: var(--text); }
+html .shiny-output-error { color: #ef4444; }
+html .shiny-output-error-validation { color: var(--text-muted); }
+
+/* ---------- Sidebar toggle ---------- */
+.topbar-left { display:flex; align-items:center; gap:.6rem; flex:0 1 auto; min-width:0; }
+
+/* Big, always-visible toggle in the top bar (wired by setupSidebarToggle in custom.js). */
+.sidebar-toggle-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  flex:0 0 auto;
+  width:44px; height:44px;
+  border:1px solid var(--border); border-radius:.65rem;
+  background:var(--surface); color:var(--text);
+  font-size:1.5rem; line-height:1; cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+}
+.sidebar-toggle-btn:hover { background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+.sidebar-toggle-btn:active { transform:scale(.95); }
+.sidebar-toggle-btn:focus-visible { outline:none; box-shadow:0 0 0 .2rem var(--focus-ring); }
+.sidebar-toggle-btn.is-collapsed { border-color:var(--accent); color:var(--accent); }
+.sidebar-toggle-btn.is-collapsed:hover { color:var(--on-accent); }
+
+/* ---------- Layout: sidebar + content (plain flex, no bslib) ---------- */
+.app-body { flex:1 1 auto; min-height:0; display:flex; position:relative; --sidebar-w:260px; }
+.app-sidebar {
+  flex:0 0 var(--sidebar-w); width:var(--sidebar-w);
+  overflow-x:hidden; overflow-y:auto;
+  background:var(--sidebar-bg); color:var(--sidebar-text);
+  border-inline-end:1px solid var(--border);
+  transition:margin-inline-start .25s ease, visibility 0s linear 0s;
+}
+/* Collapsed: slide out of the way (works for LTR and RTL thanks to logical properties). */
+.app-shell.sidebar-collapsed .app-sidebar {
+  margin-inline-start:calc(-1 * var(--sidebar-w));
+  visibility:hidden;
+  transition:margin-inline-start .25s ease, visibility 0s linear .25s;
+}
+/* The content takes ALL remaining space and scrolls on its own. */
+.app-main { flex:1 1 auto; min-width:0; overflow:auto; padding:1.25rem 1.5rem; background:var(--page-bg); }
+.app-sidebar-backdrop { display:none; }
+
+@media (max-width: 767.98px) {
+  .app-sidebar {
+    position:absolute; inset-block:0; inset-inline-start:0; z-index:900;
+    margin-inline-start:0 !important;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:transform .25s ease, visibility 0s linear 0s;
+  }
+  .app-shell.sidebar-collapsed .app-sidebar {
+    transform:translateX(-105%);
+    transition:transform .25s ease, visibility 0s linear .25s;
+  }
+  html[dir="rtl"] .app-shell.sidebar-collapsed .app-sidebar { transform:translateX(105%); }
+  .app-shell:not(.sidebar-collapsed) .app-sidebar-backdrop {
+    display:block; position:absolute; inset:0; z-index:800; background:rgba(0,0,0,.45);
+  }
+  .app-main { padding:1rem; }
+}
+
+/* The page card fills the whole content area (width AND height). */
+.app-main > .shiny-html-output { min-height:100%; display:flex; flex-direction:column; }
+.app-main > .shiny-html-output > .tab-pane-content { flex:1 1 auto; }
+html .topbar a { color:var(--accent); }
+
+/* Menu links: explicit, high-specificity states so no widget rule can hide them. */
+html .sidebar-link { color:var(--sidebar-text); }
+html .sidebar-link:hover { color:var(--text); background:var(--surface-hover); }
+html .sidebar-link.active,
+html .sidebar-link.active:hover,
+html .sidebar-link.active:focus { color:var(--active-text); background:var(--accent); }
+
+/* RTL: flip the hamburger spacing automatically (logical properties are used). */
+/* The centred link may never overlap the menu button: it shrinks with an ellipsis. */
+.brand-center { min-width: 0; overflow: hidden; }
+.brand-center a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+
+@media (max-width: 767.98px) {
+  .topbar { flex-wrap: wrap; }
+  .brand-center { display: none; }                 /* no room on phones */
+  .topbar-right, .topbar-user, .topbar-controls { flex-wrap: wrap; }
+  .topbar-right { flex: 1 1 100%; justify-content: flex-end; }
+}
+@media (max-width: 640px) {
+  .topbar-left .brand-text { display: none; }   /* keep the toggle reachable on phones */
+}
